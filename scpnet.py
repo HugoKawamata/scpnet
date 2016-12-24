@@ -22,6 +22,8 @@ page = requests.get("http://www.scp-wiki.net/scp-" + scpnum)
 tree = html.fromstring(page.content)
 content = tree.xpath('//div[@id="page-content"]/p')
 ps = ["".join(item.xpath('.//text()')) for item in content]
+if len(ps) == 0:
+    exit("File does not exist. Please enter a valid SCP item number.")
 final = ""
 for item in ps:
     final += (item + "\n\n\n")
