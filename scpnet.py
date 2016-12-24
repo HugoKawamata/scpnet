@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from lxml import html
 import requests
 import sys
@@ -13,5 +14,14 @@ tree = html.fromstring(page.content)
 
 content = tree.xpath('//div[@id="page-content"]/p/*/text() | //div[@id="page-content"]/p/text()')
 
+final = ""
+
 for item in content:
-    print(item + "\n")
+    if item[-1] == ':' or item[-2] == ':':
+        final += item
+    elif item[0] == ':' or item[1] == ':':
+        final = final[:-1] + item
+    else:
+        final += (item + "\n\n")
+
+print(final)
