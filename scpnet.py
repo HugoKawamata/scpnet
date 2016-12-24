@@ -5,7 +5,7 @@ import sys
 import random
 
 if len(sys.argv) > 2:
-    sys.exit("Usage: scpnet.py [SCP#]")
+    sys.exit("Usage: scpnet.py [SCP#]\nRunning scpnet without an SCP item number will generate a random file.")
 elif len(sys.argv) == 1:
     print("Generating random file...\n")
     rnum = random.randint(0, 2999)
