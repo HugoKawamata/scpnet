@@ -12,16 +12,13 @@ scpnum = sys.argv[1]
 page = requests.get("http://www.scp-wiki.net/scp-" + scpnum)
 tree = html.fromstring(page.content)
 
-content = tree.xpath('//div[@id="page-content"]/p/*/text() | //div[@id="page-content"]/p/text()')
+content = tree.xpath('//div[@id="page-content"]/p')
+
+ps = ["".join(item.xpath('.//text()')) for item in content]
 
 final = ""
 
-for item in content:
-    if item[-1] == ':' or item[-2] == ':':
-        final += item
-    elif item[0] == ':' or item[1] == ':':
-        final = final[:-1] + item
-    else:
-        final += (item + "\n\n")
+for item in ps:
+    final += (item + "\n\n\n")
 
 print(final)
