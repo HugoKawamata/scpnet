@@ -27,6 +27,8 @@ if len(ps) == 0:
 final = ""
 for item in ps:
     if (item[0:6] == "Item #") or (item[0:12] == "Object Class") or (item[0:15] == "Special Contain") or (item[0:11] == "Description") or (item[0:8] == "Addendum"):
-        final += "\n"
+        for _ in range(79):
+            final += "-"
+        final += "\n\n"
     final += (item + "\n\n")
 print(final)
