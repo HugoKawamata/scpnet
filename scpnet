@@ -15,13 +15,12 @@ elif len(sys.argv) == 1:
         if rnum < 10:
             scpnum += "0"
     scpnum = str(rnum)
-    print("Generating file for SCP-" + scpnum + "...\n")
 else:
     scpnum = sys.argv[1]
-    print("Generating file for SCP-" + scpnum + "...\n")
+print("Generating file for SCP-" + scpnum + "...\n")
 page = requests.get("http://www.scp-wiki.net/scp-" + scpnum)
 tree = html.fromstring(page.content)
-content = tree.xpath('//div[@id="page-content"]/blockquote | //div[@id="page-content"]//p')
+content = tree.xpath('//div[@id="page-content"]//p')
 ps = ["".join(item.xpath('.//text()')) for item in content]
 if len(ps) == 0:
     exit("File does not exist. Please enter a valid SCP item number.")
